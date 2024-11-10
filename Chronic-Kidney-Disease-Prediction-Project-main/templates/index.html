@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Chronic Kidney Disease Model</title>
+    <style>
+        /* Background Image */
+        body {
+            background-image: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0');
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Container */
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            width: 60%;KO
+            max-width: 600px;
+        }
+
+        .container-heading {
+            margin: 0;
+        }
+
+        .heading_font {
+            color: #333;
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+            font-weight: normal;
+        }
+
+        /* Form Fields */
+        input[type="text"] {
+            border-radius: 10px;
+            height: 30px;
+            width: calc(100% - 22px);
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+
+        h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        /* Submit Button */
+        #sub {
+            width: 150px;
+            height: 43px;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 18px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #sub:hover {
+            background-color: #0056b3;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="container-heading"><span class="heading_font">Chronic Kidney Disease Prediction</span></h2>
+        <form action="{{ url_for('predict') }}" method="POST">
+            <h3>Specific Gravity</h3>
+            <input id="first" type="text" name="sg" placeholder="Ex: (1.005,1.010,1.015,1.020,1.025)" required="required">
+            <h3>Hyper Tension</h3>
+            <input id="second" type="text" name="htn" placeholder="Yes = 1, No=0" required="required">
+            <h3>Hemoglobin</h3>
+            <input id="third" type="text" name="hemo" placeholder="in gms" required="required">
+            <h3>Diabetes Mellitus</h3>
+            <input id="fourth" type="text" name="dm" placeholder="Yes = 1, No=0" required="required">
+            <h3>Albumin</h3>
+            <input id="fifth" type="text" name="al" placeholder="(0,1,2,3,4,5)" required="required">
+            <h3>Appetite</h3>
+            <input id="sixth" type="text" name="appet" placeholder="Good = 1, Poor = 0" required="required">
+            <h3>Red Blood Cell Count</h3>
+            <input id="seventh" type="text" name="rc" placeholder="in Millions/cmm" required="required">
+            <h3>Pus Cell</h3>
+            <input id="eight" type="text" name="pc" placeholder="Normal = 0, Abnormal = 1" required="required">
+            <br>
+            <br>
+            <button id="sub" type="submit">Submit</button>
+            <br>
+            <br>
+        </form>
+    </div>
+    <div class="footer">
+        <p>&copy; 2024 Chronic Kidney Disease Prediction. All rights reserved.</p>
+    </div>
+</body>
+
+</html>

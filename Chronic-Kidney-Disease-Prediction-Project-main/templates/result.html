@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chronic Kidney Disease Result</title>
+    <style>
+        /* Background Image */
+        body {
+            background-image: url('https://images.pexels.com/photos/289586/pexels-photo-289586.jpeg?auto=compress&cs=tinysrgb&w=600');
+            /*height: 100vh;*/
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Flex container */
+        .flex-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        /* Container */
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container-heading {
+            margin: 0;
+        }
+
+        .heading_font {
+            color: #333;
+            font-family: 'Pacifico', cursive;
+            font-size: 40px;
+            font-weight: normal;
+        }
+
+        .results {
+            margin-top: 30px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .danger {
+            color: #FF0000;
+        }
+
+        .safe {
+            color: #008000;
+        }
+
+        .warning{
+            color: #add8e6;
+        }
+        .info{
+            color:#e6bbad;
+        }
+        
+        /* Symptoms Table */
+        .symptoms-container {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .symptoms-container h3 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .symptoms-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .symptoms-container table, .symptoms-container th, .symptoms-container td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .symptoms-container th {
+            background-color: #f2f2f2;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .symptoms-container td {
+            font-size: 16px;
+            color: #555;
+        }
+
+        /* Graph */
+        .graph-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .graph-container h3 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .graph-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <br><br>
+
+    <div class="flex-container">
+        <div class="container">
+            <form action="{{ url_for('predict')}}" method="post">
+                <h2 class='container-heading'><span class="heading_font">Chronic Kidney Disease Prediction</span></h2>
+
+                <div class="results">
+                    {% if prediction==1 %}
+                    <h1><span class='danger'>You have CHRONIC KIDNEY DISEASE.<br><br>Please Consult Doctor.</span></h1>
+                    {% elif prediction==0 %}
+                    <h1><span class='safe'>Congratulations!<br><br>You DON'T have Chronic Kidney Disease.</span></h1>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+
+        <div class="container symptoms-container">
+            <h3><span class='warning'>Possible Symptoms Based on Your Inputs:</span></h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Symptom</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for symptom in symptoms %}
+                    <tr>
+                        <td>{{ symptom[0] }}</td>
+                        <td>{{ symptom[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="container graph-container">
+            <h3><span class="info">Comparison of Your Values with Healthy Values:</span></h3>
+            <img src="{{ url_for('static', filename='comparison_graph.png') }}" alt="Comparison Graph">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Chronic Kidney Disease Prediction. All rights reserved.</p>
+    </div>
+
+</body>
+
+</html>
